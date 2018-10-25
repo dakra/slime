@@ -110,8 +110,9 @@ the Emacs Lisp package.")
 (defvar slime-contribs nil
   "A list of contrib packages to load with SLIME.")
 (define-obsolete-variable-alias 'slime-setup-contribs
-'slime-contribs "2.3.2")
+  'slime-contribs "2.3.2")
 
+;;;###autoload
 (defun slime-setup (&optional contribs)
   "Setup Emacs so that lisp-mode buffers always use SLIME.
 CONTRIBS is a list of contrib packages to load. If `nil', use
@@ -134,6 +135,7 @@ CONTRIBS is a list of contrib packages to load. If `nil', use
         (when (fboundp init)
           (funcall init))))))
 
+;;;###autoload
 (defun slime-lisp-mode-hook ()
   (slime-mode 1)
   (set (make-local-variable 'lisp-indent-function)
@@ -449,6 +451,7 @@ more easily. See `slime-init-keymaps'.")
 (defun slime--off ()
   (remove-hook 'completion-at-point-functions #'slime--completion-at-point t))
 
+;;;###autoload
 (define-minor-mode slime-mode
   "\\<slime-mode-map>\
 SLIME: The Superior Lisp Interaction Mode for Emacs (minor-mode).
@@ -985,6 +988,7 @@ See `slime-lisp-implementations'")
 (defvar slime-net-processes)
 (defvar slime-default-connection)
 
+;;;###autoload
 (defun slime (&optional command coding-system)
   "Start an inferior^_superior Lisp and connect to its Swank server."
   (interactive)
@@ -1097,6 +1101,7 @@ DIRECTORY change to this directory before starting the process.
 (defun slime-start* (options)
   (apply #'slime-start options))
 
+;;;###autoload
 (defun slime-connect (host port &optional _coding-system interactive-p)
   "Connect to a running Swank server. Return the connection."
   (interactive (list (read-from-minibuffer
@@ -6703,6 +6708,7 @@ DESCRIPTION is a one-line description of what the key selects.")
 (defvar slime-selector-other-window nil
   "If non-nil use switch-to-buffer-other-window.")
 
+;;;###autoload
 (defun slime-selector (&optional other-window)
   "Select a new buffer by type, indicated by a single character.
 The user is prompted for a single character indicating the method by
